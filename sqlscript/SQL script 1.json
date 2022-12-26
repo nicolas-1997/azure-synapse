@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "-- Create master key\n-- CREATE MASTER KEY;\n-- GO\n\n-- Create credential to access Data Lake\nCREATE DATABASE SCOPED CREDENTIAL PSDataLakeCredential\nWITH \n\tIDENTITY = 'user', \n\tSecret = 'RVDMoKwYEWbEbGY1gJWFv0jduwlA1JrsdRzO0i4qSbW5Zmtt76Wl9U+76ofyiFl4PrYKYr4m8CgR+AStqotaMg==';\nGO\n\n-- Create external data source, pointing to Data Lake\nCREATE EXTERNAL DATA SOURCE PSDataLake\nwith (  \n      TYPE = HADOOP,\n      LOCATION ='abfss://taxidata@synapsedatalake04.dfs.core.windows.net',  \n      CREDENTIAL = PSDataLakeCredential  \n);  \nGO\n\n-- Create external file format\nCREATE EXTERNAL FILE FORMAT CSVFileFormat \nWITH \n(   FORMAT_TYPE = DELIMITEDTEXT\n,   FORMAT_OPTIONS  \n\t(   \n\t\tFIELD_TERMINATOR   = ','\n\t\t, STRING_DELIMITER = '\"'\n        , DATE_FORMAT      = 'yyyy-MM-dd HH:mm:ss'\n        , USE_TYPE_DEFAULT = FALSE\n        , FIRST_ROW  = 2\n    )\n);\nGO\n\n-- Create schema for external resources\nCREATE SCHEMA ext\nGO\n\n-- Create external table for Taxi Zones\nCREATE EXTERNAL TABLE ext.taxiZones\n(\n\tLocationId INT,\n\tBorough NVARCHAR(100),\n\tZone NVARCHAR(100),\n    ServiceZone NVARCHAR(100)\n)\nWITH\n(\n    DATA_SOURCE = PSDataLake\n  , FILE_FORMAT = CSVFileFormat  \n  , LOCATION='/taxiZones/TaxiZones1.csv'  \n)\nGO\n\nSELECT * FROM ext.taxiZones\nGO\n\n\n\n\n\n\n\n-- Drop external table\nDROP EXTERNAL TABLE ext.taxiZones\n\n-- Recreate external table\nCREATE EXTERNAL TABLE ext.taxiZones\n(\n\tLocationId INT,\n\tBorough NVARCHAR(100),\n\tZone NVARCHAR(100),\n    ServiceZone NVARCHAR(100)\n)\nWITH\n(\n    DATA_SOURCE = PSDataLake\n  , FILE_FORMAT = CSVFileFormat  \n  , LOCATION='/taxiZones/'    \n  , REJECT_TYPE = VALUE\n  , REJECT_VALUE = 1\n  , REJECTED_ROW_LOCATION='/Errors/taxiZones'\n)\nGO\n\nSELECT * FROM ext.taxiZones\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "taxidatawarehouse",
+				"poolName": "taxidatawarehouse"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 3",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.objects O JOIN sys.schemas S ON O.schema_id = S.schema_id WHERE O.NAME = 'TaxiCOPY' AND O.TYPE = 'U' AND S.NAME = 'dbo')\nCREATE TABLE dbo.TaxiCOPY\n\t(\n\t [LocationID] bigint,\n\t [Borough] nvarchar(4000),\n\t [Zone] nvarchar(4000),\n\t [service_zone] nvarchar(4000)\n\t)\nWITH\n\t(\n\tDISTRIBUTION = ROUND_ROBIN,\n\t CLUSTERED COLUMNSTORE INDEX\n\t -- HEAP\n\t)\nGO\n\n--Uncomment the 4 lines below to create a stored procedure for data pipeline orchestration​\n--CREATE PROC bulk_load_TaxiCOPY\n--AS\n--BEGIN\nCOPY INTO dbo.TaxiCOPY\n(LocationID 1, Borough 2, Zone 3, service_zone 4)\nFROM 'https://synapsedatalake04.dfs.core.windows.net/taxidata/taxiZones/*.csv'\nWITH\n(\n\tFILE_TYPE = 'CSV'\n\t,MAXERRORS = 2\n\t,FIRSTROW = 2\n\t,ERRORFILE = 'https://synapsedatalake04.dfs.core.windows.net/taxidata/Errors/'\n)\n--END\nGO\n\nSELECT TOP 100 * FROM dbo.TaxiCOPY\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "taxidatawarehouse",
+				"poolName": "taxidatawarehouse"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

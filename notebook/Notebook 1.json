@@ -1,0 +1,226 @@
+{
+	"name": "Notebook 1",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "taxidata",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 1,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "1",
+				"spark.dynamicAllocation.maxExecutors": "1",
+				"spark.autotune.trackingId": "e7bc025d-848c-426b-8db2-e48d701bf03a"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1",
+				"state": {
+					"8e7393d9-23bf-496b-986f-6857f4ce1999": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "hvfhs_license_num",
+										"1": "dispatching_base_num",
+										"2": "pickup_datetime",
+										"3": "dropoff_datetime",
+										"4": "PULocationID",
+										"5": "DOLocationID",
+										"6": "SR_Flag"
+									},
+									{
+										"0": "HV0002",
+										"1": "B03035",
+										"2": "2019-11-01 00:18:05",
+										"3": "2019-11-01 00:35:35",
+										"4": "230",
+										"5": "243"
+									},
+									{
+										"0": "HV0003",
+										"1": "B02765",
+										"2": "2019-11-01 00:27:51",
+										"3": "2019-11-01 00:51:07",
+										"4": "148",
+										"5": "263"
+									},
+									{
+										"0": "HV0005",
+										"1": "B02510",
+										"2": "2019-11-01 00:38:31",
+										"3": "2019-11-01 00:49:01",
+										"4": "180",
+										"5": "63"
+									},
+									{
+										"0": "HV0005",
+										"1": "B02510",
+										"2": "2019-11-01 00:59:38",
+										"3": "2019-11-01 01:26:26",
+										"4": "180",
+										"5": "112"
+									},
+									{
+										"0": "HV0005",
+										"1": "B02510",
+										"2": "2019-11-01 00:13:25",
+										"3": "2019-11-01 00:24:09",
+										"4": "90",
+										"5": "164"
+									},
+									{
+										"0": "HV0005",
+										"1": "B02510",
+										"2": "2019-11-01 00:30:05",
+										"3": "2019-11-01 00:48:28",
+										"4": "164",
+										"5": "4"
+									},
+									{
+										"0": "HV0005",
+										"1": "B02510",
+										"2": "2019-11-01 00:50:49",
+										"3": "2019-11-01 01:31:40",
+										"4": "4",
+										"5": "179",
+										"6": "1"
+									},
+									{
+										"0": "HV0005",
+										"1": "B02510",
+										"2": "2019-11-01 00:05:38",
+										"3": "2019-11-01 00:16:45",
+										"4": "144",
+										"5": "34",
+										"6": "1"
+									},
+									{
+										"0": "HV0005",
+										"1": "B02510",
+										"2": "2019-11-01 00:19:43",
+										"3": "2019-11-01 00:30:29",
+										"4": "34",
+										"5": "181"
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "_c0",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "_c1",
+										"type": "string"
+									},
+									{
+										"key": "2",
+										"name": "_c2",
+										"type": "string"
+									},
+									{
+										"key": "3",
+										"name": "_c3",
+										"type": "string"
+									},
+									{
+										"key": "4",
+										"name": "_c4",
+										"type": "string"
+									},
+									{
+										"key": "5",
+										"name": "_c5",
+										"type": "string"
+									},
+									{
+										"key": "6",
+										"name": "_c6",
+										"type": "string"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					}
+				}
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/7d838659-99cd-42a9-9b7b-bb604c49ce77/resourceGroups/Synapse/providers/Microsoft.Synapse/workspaces/azuresynapse01/bigDataPools/taxidata",
+				"name": "taxidata",
+				"type": "Spark",
+				"endpoint": "https://azuresynapse01.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/taxidata",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.2",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "python"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%pyspark\r\n",
+					"df = spark.read.load('abfss://taxidata@synapsedatalake04.dfs.core.windows.net/FhvTaxis_201911.csv', format='csv'\r\n",
+					"## If header exists uncomment line below\r\n",
+					"##, header=True\r\n",
+					")\r\n",
+					"display(df.limit(10))"
+				],
+				"execution_count": 2
+			}
+		]
+	}
+}
