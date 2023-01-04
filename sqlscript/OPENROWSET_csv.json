@@ -1,0 +1,17 @@
+{
+	"name": "OPENROWSET_csv",
+	"properties": {
+		"content": {
+			"query": "-- This is auto-generated code\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://synapsedatalake04.dfs.core.windows.net/taxidata/taxiZones/TaxiZones1.csv',\n        FORMAT = 'CSV',\n        PARSER_VERSION = '2.0',\n        HEADER_ROW = TRUE\n    ) \nWITH(\n    LocationId INT                1,\n    Borough VARCHAR(100)        2,\n    Zone VARCHAR(100)           3,\n    ServiceZone VARCHAR(100)    4\n\n)\n    \n    AS [result]\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "OPENROWSET_parquet",
+	"properties": {
+		"content": {
+			"query": "-- This is auto-generated code\nSELECT\n      FileLocation = fhv.filepath(), \n      FileName = fhv.filename(), \n      *\nFROM\n    OPENROWSET(\n        BULK 'https://synapsedatalake04.dfs.core.windows.net/taxioutput/Facts/FhvTaxis.parquet/TripYear=2019/TripMonth=11/TripDay=1/*',\n        FORMAT = 'PARQUET'\n    ) AS fhv\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
